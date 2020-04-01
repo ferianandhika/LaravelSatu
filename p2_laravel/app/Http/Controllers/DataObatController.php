@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\DataObat;
+use App\DataPenyakit;
 
 class DataObatController extends Controller
 {
@@ -14,8 +15,9 @@ class DataObatController extends Controller
      */
     public function index()
     {
+        $datapenyakits = DataPenyakit::all();
         $dataobats = DataObat::latest()->get();
-        return view('Klinik.Obat.index', compact('dataobats'));
+        return view('Klinik.Obat.index', compact('dataobats', 'datapenyakits'));
     }
 
     /**
@@ -25,7 +27,8 @@ class DataObatController extends Controller
      */
     public function create()
     {
-        return view('Klinik.Obat.create');
+        $datapenyakits = DataPenyakit::all();
+        return view('Klinik.Obat.create', compact('datapenyakits'));
     }
 
     /**
@@ -38,7 +41,7 @@ class DataObatController extends Controller
     {
         $dataobat = DataObat::create([
             'nama_obat' => $request->input('nama_obat'),
-            'nama_penyakit' => $request->input('nama_penyakit')
+            'penyakit_id' => $request->input('penyakit_id')
             
         ]);
 
@@ -64,7 +67,8 @@ class DataObatController extends Controller
      */
     public function edit(DataObat $dataobat)
     {
-        return view('Klinik.Obat.edit', compact('dataobat'));
+        $datapenyakits = DataPenyakit::all();
+        return view('Klinik.Obat.edit', compact('dataobat','datapenyakits'));
     }
 
     /**
@@ -78,7 +82,7 @@ class DataObatController extends Controller
     {
         $dataobat = DataObat::whereid_obat($dataobat->id_obat)->update([
             'nama_obat' => $request->input('nama_obat'),
-            'nama_penyakit' => $request->input('nama_penyakit')
+            'penyakit_id' => $request->input('penyakit_id')
         ]);
 
         return redirect(route('dataobats.index'));

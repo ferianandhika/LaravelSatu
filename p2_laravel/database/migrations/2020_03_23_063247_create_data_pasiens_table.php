@@ -17,14 +17,16 @@ class CreateDataPasiensTable extends Migration
             $table->bigIncrements('id_pasien');
             $table->string('nama_pasien');
             $table->string('ttl');
-            $table->string('umur');
+            $table->integer('umur');
             $table->enum('jk',['laki-laki','perempuan']);
             $table->string('alamat');
             $table->date('tgl_datang');
             $table->string('gejala');
-            $table->integer('nama_penyakit');
-            $table->string('nama_obat');
+            $table->bigInteger('penyakit_id')->unsigned();
+            $table->bigInteger('obat_id')->unsigned();
             $table->timestamps();
+            $table->foreign('penyakit_id')->references('id_penyakit')->on('data_penyakits')->onDelete('cascade');
+            $table->foreign('obat_id')->references('id_obat')->on('data_obats')->onDelete('cascade');
         });
     }
 

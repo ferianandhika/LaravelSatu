@@ -16,8 +16,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('daftarmhs/{kelas?}', 'DaftarMhsController@index');
-Route::resource('crud', 'CrudController');
+
 Route::resource('/datapenyakits','DataPenyakitController');
 Route::resource('/datadokters', 'DataDokterController');
 Route::resource('/dataobats', 'DataObatController');

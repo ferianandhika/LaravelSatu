@@ -58,7 +58,8 @@
 								<tr>
 									<td>{{ $d+1 }}</td>
 									<td>{{ $dataobat->nama_obat }}</td>
-									<td>{{ $dataobat->nama_penyakit }}</td>
+									<!-- <td>{{ $dataobat->nama_penyakit }}</td> -->
+									<td>{{ $dataobat->penyakitObat['nama_penyakit'] }}</td>
 									
 									<td class="text-center">
 										<form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('dataobats.destroy', $dataobat->id_obat) }}" method="POST">

@@ -16,8 +16,9 @@ class CreateDataObatsTable extends Migration
         Schema::create('data_obats', function (Blueprint $table) {
             $table->bigIncrements('id_obat');
             $table->string('nama_obat');
-            $table->integer('nama_penyakit');
+            $table->bigInteger('penyakit_id')->unsigned();
             $table->timestamps();
+            $table->foreign('penyakit_id')->references('id_penyakit')->on('data_penyakits')->onDelete('cascade');
         });
     }
 

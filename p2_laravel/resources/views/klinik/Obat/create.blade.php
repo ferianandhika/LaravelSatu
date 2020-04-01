@@ -26,7 +26,13 @@
 							<div class="form-group">
 								<label>NAMA PENYAKIT</label>
 								<!-- <input type="text" name="kelas" placeholder="Masukan GEJALA PENYAKIT" class="form-control" required> -->
-								<textarea type="text" name="nama_penyakit" placeholder="Masukan nama_penyakit" class="form-control" required rows="5"></textarea>
+								<!-- <textarea type="text" name="nama_penyakit" placeholder="Masukan nama_penyakit" class="form-control" required rows="5"></textarea> -->
+								<select  class="form-control" name="penyakit_id">
+							            <option disabled selected>Pilih Satu</option>
+						                @foreach($datapenyakits as $dtp)
+						                    <option value="{{ $dtp->id_penyakit }}"> {{ $dtp->nama_penyakit }} </option>
+						                @endforeach
+						            </select> 
 							</div>
 							<button type="submit" class="btn btn-success">SIMPAN</button>
 							<button type="reset" class="btn btn-warning">RESET</button>

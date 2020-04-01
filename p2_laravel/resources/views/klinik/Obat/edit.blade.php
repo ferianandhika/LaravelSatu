@@ -19,16 +19,22 @@
 							@csrf
 							@method('PUT')
 							<div class="form-group">
-								<label>NAMA OBAT</label>
-								<input type="text" name="nama_obat" placeholder="Masukan Nama Obat" value="{{ $dataobat->nama_obat }}" class="form-control">
-							</div>
-							<div class="form-group">
-								<label>NAMA_PENYAKIT</label>
-								<input type="text" name="nama_penyakit" placeholder="Masukan nama penyakit " value="{{ $dataobat->nama_penyakit }}" class="form-control">
-								
-							</div>
-							<button type="submit" class="btn btn-success">UPDATE</button>
-							<button type="reset" class="btn btn-warning">RESET</button>
+                                <label>NAMA OBAT</label>
+                                <input type="text" name="nama_obat" value="{{ $dataobat->nama_obat }}" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>NAMA PENYAKIT</label>
+                                <!-- <input type="text" name="nama_penyakit" value="{{ $dataobat->nama_penyakit }}" class="form-control"> -->
+                                <select name="penyakit_id" class="form-control" required>
+										<option value="" disabled selected>-- Pilih Penyakit --</option>
+									  	@foreach($datapenyakits as $dtp)
+									  		<option {{ $dataobat->penyakit_id == $dtp->id_penyakit ? "selected" : "" }} value="{{ $dtp->id_penyakit }}">{{ $dtp->nama_penyakit }}</option>
+									  	@endforeach
+									</select>
+                            </div>
+                            
+							<button type="submit" class="btn btn-success" class="btn btn-md btn-success" style="margin-bottom: 25px">UPDATE</button>
+							<button type="reset" class="btn btn-warning" class="btn btn-md btn-success" style="margin-bottom: 25px">RESET</button>
 						</form>
 					</div>
 				</div>
